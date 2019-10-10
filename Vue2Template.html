@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Simple App</title>
+
+		<!-- CDN: (for prototyping) -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vuetify@2.0.15/dist/vuetify.min.js"></script>
+		<link  href="https://cdn.jsdelivr.net/npm/vuetify@2.0.15/dist/vuetify.min.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+
+		<!-- SELF HOSTED: Ensure library availability even if there is no internet access:
+		<script src="./libs/vue.min.js"></script>
+		<script src="./libs/vuetify.min.js"></script>
+		<link  href="./libs/vuetify.min.css"				rel="stylesheet"/>
+		<link  href="./libs/materialdesignicons.min.css"	rel="stylesheet"/>
+		-->
+	</head>
+	<body>
+		<div id="vue-root"></div>
+	</body>
+</html>
+
+<script>
+	var App = {
+		template: `
+				<v-app>
+					<v-container fluid class="py-0 px-2">
+						<v-row>
+							<v-col cols="12">
+								<h3>Vue Simple App</h3>
+								<v-text-field v-model="name" label="name" clearable/>
+								<v-text-field v-model="surname" label="surname" clearable/>
+								<v-btn @click="sayHello">
+									<v-icon class="mr-3">mdi-android-messages</v-icon>
+									Say Hello
+								</v-btn>
+							</v-col>
+						</v-row>
+					</v-container>
+				</v-app>`,
+		name: 'App',
+		data() {
+			return {
+				name: 'Peter',
+				surname: 'Parker',
+			}
+		},
+		computed: {
+			fullName() {
+				return `${this.name} ${this.surname}`
+			}
+		},
+		methods: {
+			sayHello() {
+				alert(`Hello ${this.fullName}!`)
+			}
+		}
+	}
+
+	var vuetify = new Vuetify()
+	var vueApp = new Vue({
+		vuetify,
+		render: h => h(App),
+	}).$mount('#vue-root')
+</script>
