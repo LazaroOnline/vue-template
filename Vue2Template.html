@@ -21,27 +21,29 @@
 	</head>
 	<body>
 		<div id="vue-root"></div>
+		<script type="text/x-template" id="vue-app-template">
+			<v-app>
+				<v-container fluid class="py-0 px-2">
+					<v-row>
+						<v-col cols="12">
+							<h3>Vue Simple App</h3>
+							<v-text-field v-model="name" label="name" clearable/>
+							<v-text-field v-model="surname" label="surname" clearable/>
+							<v-btn @click="sayHello">
+								<v-icon class="mr-3">mdi-android-messages</v-icon>
+								Say Hello
+							</v-btn>
+						</v-col>
+					</v-row>
+				</v-container>
+			</v-app>
+		</script>
 	</body>
 </html>
 
 <script>
 	var App = {
-		template: `
-				<v-app>
-					<v-container fluid class="py-0 px-2">
-						<v-row>
-							<v-col cols="12">
-								<h3>Vue Simple App</h3>
-								<v-text-field v-model="name" label="name" clearable/>
-								<v-text-field v-model="surname" label="surname" clearable/>
-								<v-btn @click="sayHello">
-									<v-icon class="mr-3">mdi-android-messages</v-icon>
-									Say Hello
-								</v-btn>
-							</v-col>
-						</v-row>
-					</v-container>
-				</v-app>`,
+		template: '#vue-app-template',
 		name: 'App',
 		data() {
 			return {
