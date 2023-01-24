@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Vuetify Template</title>
+	<link rel="icon" type="image/png" href="Icon.png" />
+
+	<!-- CDN: -->
+	<script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"     ></script>
+	<script src="https://unpkg.com/vuetify@3.3.0/dist/vuetify.min.js"></script>
+	<link  href="https://unpkg.com/vuetify@3.3.0/dist/vuetify.min.css"             rel="stylesheet" />
+	<link  href="https://unpkg.com/@mdi/font@3.x/css/materialdesignicons.min.css"  rel="stylesheet" />
+	<!--
+	OTHER CDN:
+	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"     ></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.prod.min.js"          ></script>
+	<script src="https://cdn.jsdelivr.net/npm/vuetify@3.3.0/dist/vuetify.min.js"              ></script>
+	<link  href="https://cdn.jsdelivr.net/npm/vuetify@3.3.0/dist/vuetify.min.css"             rel="stylesheet" />
+	<link  href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css"  rel="stylesheet" />
+	-->
+	<link  href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"      rel="stylesheet" />
+
+	<!-- SELF HOSTED: (works offline)
+	<script src="./libs/vue.global.v3.3.4.prod.min.js"></script>
+	<script src="./libs/vuetify.v3.3.0.min.js"        ></script>
+	<link  href="./libs/vuetify.v3.3.0.min.css"	      rel="stylesheet"/>
+	<link  href="./libs/materialdesignicons.min.css"  rel="stylesheet"/>
+	<link  href="./libs/FontRoboto.css"               rel="stylesheet"/>
+	-->
+	
+	<!--
+	DOCUMENTATION:
+	https://unpkg.com
+	https://vuetifyjs.com/
+	https://vuejs.org/guide/essentials/application.html
+	https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
+	https://www.jsdelivr.com/package/npm/vue
+	https://www.jsdelivr.com/package/npm/vuetify
+	https://www.jsdelivr.com/package/npm/@mdi/font
+	https://vuetifyjs.com/en/getting-started/installation/#cdn
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+	-->
+
+</head>
+<body>
+	<div id="vue-root">
+		<v-app>
+			<v-app-bar :elevation="2">
+				<v-toolbar-title><h4 class="mx-auto">Vuetify Template</h4></v-toolbar-title>
+			</v-app-bar>
+			<v-main class="bg-grey-lighten-2">
+				<v-card max-width="500" class="mx-auto mt-4">
+					<v-container fluid>
+						<v-row>
+							<v-text-field v-model="name" label="name" clearable class="ma-2"/>
+						</v-row>
+						<v-row>
+								<v-text-field v-model="surname" label="surname" clearable class="ma-2"/>
+						</v-row>
+						<v-row>
+							<v-col cols="6">
+								<v-btn @click="sayHello" class="d-flex mx-auto">
+									<v-icon class="mr-3">mdi-android-messages</v-icon>
+									Say Hello
+								</v-btn>
+							</v-col>
+							<v-col>
+								<v-btn @click="count++" class="d-flex mx-auto">
+									Counter: {{ count }}
+								</v-btn>
+							</v-col cols="6">
+						</v-row>
+					</v-container>
+				</v-card>
+			</v-main>
+		</v-app>
+	</div>
+</body>
+
+<script type="importmap">
+{
+	"imports": {
+		"vue": "https://unpkg.com/vue@3.3.4/dist/vue.esm-browser.js",
+		"vuetify": "https://unpkg.com/vuetify@3.3.0/dist/vuetify.esm.js"
+	}
+}
+</script>
+
+<script type="module">
+
+// Without requiring the "importamp":
+//import * as Vue from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+//import * as Vuetify from 'https://unpkg.com/vuetify@3.3.0/dist/vuetify.esm.js'
+
+// Thanks to the "importamp":
+//import * as Vue from 'vue'
+//import * as Vuetify from 'vuetify'
+
+var App = {
+	name: 'App',
+	data() {
+		return {
+			count: 0,
+			name: 'Peter',
+			surname: 'Parker',
+		}
+	},
+	computed: {
+		fullName() {
+			return `${this.name} ${this.surname}`
+		}
+	},
+	methods: {
+		sayHello() {
+			alert(`Hello ${this.fullName}!`)
+		}
+	}
+}
+var vuetifyInstance = Vuetify.createVuetify()
+var vueApp = Vue.createApp(App)
+vueApp.use(vuetifyInstance).mount('#vue-root')
+console.log("Finished!")
+
+</script>
+
+</html>

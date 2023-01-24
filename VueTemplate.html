@@ -1,81 +1,76 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Vue Simple App</title>
-		<link rel="icon" type="image/png" href="Icon.png" />
+<head>
+	<meta charset="utf-8">
+	<title>Vue Template</title>
+	<link rel="icon" type="image/png" href="Icon.png" />
 
-		<!-- CDN: -->
-		<!-- <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script> -->
-		<script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.min.js"         ></script>
-		<script src="https://cdn.jsdelivr.net/npm/vuetify@3.1.2/dist/vuetify.min.js"              ></script>
-		<link  href="https://cdn.jsdelivr.net/npm/vuetify@3.1.2/dist/vuetify.min.css"             rel="stylesheet" />
-		<link  href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css"  rel="stylesheet" />
-		<link  href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"      rel="stylesheet" />
+	<!-- CDN: -->
+	<script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
 
-		<!-- SELF HOSTED: (works offline)
-		<script src="./libs/vue.global.prod.min.js"       ></script>
-		<script src="./libs/vuetify.v3.1.2.min.js"        ></script>
-		<link  href="./libs/vuetify.v3.1.2.min.css"	      rel="stylesheet"/>
-		<link  href="./libs/materialdesignicons.min.css"  rel="stylesheet"/>
-		<link  href="./libs/FontRoboto.css"               rel="stylesheet"/>
-		-->
-		
-		<!--
-		DOCUMENTATION:
-		https://vuetifyjs.com/
-		https://vuejs.org/guide/essentials/application.html
-		https://www.jsdelivr.com/package/npm/vue
-		https://www.jsdelivr.com/package/npm/vuetify
-		https://www.jsdelivr.com/package/npm/@mdi/font
-		-->
-	</head>
-	<body>
-		<div id="vue-root"></div>
-		<script type="text/x-template" id="vue-app-template">
-			<v-app>
-				<v-container fluid class="py-0 px-2">
-					<v-row>
-						<v-col cols="12">
-							<h3>Vue Simple App</h3>
-							<v-text-field v-model="name" label="name" clearable/>
-							<v-text-field v-model="surname" label="surname" clearable/>
-							<v-btn @click="sayHello">
-								<v-icon class="mr-3">mdi-android-messages</v-icon>
-								Say Hello
-							</v-btn>
-						</v-col>
-					</v-row>
-				</v-container>
-			</v-app>
-		</script>
-	</body>
-</html>
+	<!--
+	OTHER CDN:
+	<script src="https://cdn.jsdelivr.net/npm/vue@3.3/dist/vue.global.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@3.3/dist/vue.global.prod.min.js"></script>
 
-<script>
-	var App = {
-		template: '#vue-app-template',
-		name: 'App',
-		data() {
-			return {
-				name: 'Peter',
-				surname: 'Parker',
-			}
-		},
-		computed: {
-			fullName() {
-				return `${this.name} ${this.surname}`
-			}
-		},
-		methods: {
-			sayHello() {
-				alert(`Hello ${this.fullName}!`)
-			}
+	SELF HOSTED: (works offline)
+	<script src="./libs/vue.v3.3.4.global.prod.min.js"></script>
+
+	DOCUMENTATION:
+	https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
+	https://vuejs.org/guide/essentials/application.html
+	https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
+	https://www.jsdelivr.com/package/npm/vue
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+	-->
+</head>
+<body>
+	<h4>Vue Template</h4>
+	<div id="vue-root">
+		<div>Name: <input v-model="name"></div>
+		<div>Surname: <input v-model="surname"></div>
+		<button @click="sayHello">Say Hello</button>
+		<button @click="count++">Counter: {{ count }}</button>
+	</div>
+</body>
+
+<script type="importmap">
+{
+	"imports": {
+		"vue": "https://unpkg.com/vue@3.3.4/dist/vue.esm-browser.js"
+	}
+}
+</script>
+
+<script type="module">
+
+//import * as Vue from 'https://unpkg.com/vue@3.3.4/dist/vue.esm-browser.js' // Without requiring the "importamp".
+//import * as Vue from 'https://cdn.jsdelivr.net/npm/vue@3.3.4/+esm' // Another CDN option.
+//import * as Vue from 'vue' // Thanks to the "importamp".
+
+var App = {
+	name: 'App',
+	data() {
+		return {
+			count: 0,
+			name: 'Peter',
+			surname: 'Parker',
+		}
+	},
+	computed: {
+		fullName() {
+			return `${this.name} ${this.surname}`
+		}
+	},
+	methods: {
+		sayHello() {
+			alert(`Hello ${this.fullName}!`)
 		}
 	}
+}
+var vueApp = Vue.createApp(App).mount('#vue-root')
+console.log("Finished!")
 
-	var vuetify = Vuetify.createVuetify()
-	var vueApp = Vue.createApp(App)
-	vueApp.use(vuetify)
-	.mount('#vue-root')
 </script>
+
+</html>
