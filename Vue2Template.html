@@ -4,19 +4,29 @@
 		<meta charset="utf-8">
 		<title>Vue Simple App</title>
 
-		<!-- CDN: (for prototyping) -->
+		<!-- CDN: -->
 		<!-- <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script> -->
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vuetify@2.0.15/dist/vuetify.min.js"></script>
-		<link  href="https://cdn.jsdelivr.net/npm/vuetify@2.0.15/dist/vuetify.min.css" rel="stylesheet" />
-		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet" />
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.min.js"         ></script>
+		<script src="https://cdn.jsdelivr.net/npm/vuetify@3.1.2/dist/vuetify.min.js"              ></script>
+		<link  href="https://cdn.jsdelivr.net/npm/vuetify@3.1.2/dist/vuetify.min.css"             rel="stylesheet" />
+		<link  href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css"  rel="stylesheet" />
+		<link  href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"      rel="stylesheet" />
 
-		<!-- SELF HOSTED: Ensure library availability even if there is no internet access:
-		<script src="./libs/vue.min.js"></script>
-		<script src="./libs/vuetify.min.js"></script>
-		<link  href="./libs/vuetify.min.css"				rel="stylesheet"/>
-		<link  href="./libs/materialdesignicons.min.css"	rel="stylesheet"/>
+		<!-- SELF HOSTED: (works offline)
+		<script src="./libs/vue.global.prod.min.js"       ></script>
+		<script src="./libs/vuetify.v3.1.2.min.js"        ></script>
+		<link  href="./libs/vuetify.v3.1.2.min.css"	      rel="stylesheet"/>
+		<link  href="./libs/materialdesignicons.min.css"  rel="stylesheet"/>
+		<link  href="./libs/FontRoboto.css"               rel="stylesheet"/>
+		-->
+		
+		<!--
+		DOCUMENTATION:
+		https://vuetifyjs.com/
+		https://vuejs.org/guide/essentials/application.html
+		https://www.jsdelivr.com/package/npm/vue
+		https://www.jsdelivr.com/package/npm/vuetify
+		https://www.jsdelivr.com/package/npm/@mdi/font
 		-->
 	</head>
 	<body>
@@ -63,9 +73,8 @@
 		}
 	}
 
-	var vuetify = new Vuetify()
-	var vueApp = new Vue({
-		vuetify,
-		render: h => h(App),
-	}).$mount('#vue-root')
+	var vuetify = Vuetify.createVuetify()
+	var vueApp = Vue.createApp(App)
+	vueApp.use(vuetify)
+	.mount('#vue-root')
 </script>
