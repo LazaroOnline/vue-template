@@ -5,17 +5,10 @@
 	<title>Vue Template</title>
 	<link rel="icon" type="image/png" href="Icon.png" />
 
-	<!-- CDN: -->
-	<script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
-
-	<!--
-	OTHER CDN:
-	<script src="https://cdn.jsdelivr.net/npm/vue@3.3/dist/vue.global.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue@3.3/dist/vue.global.prod.min.js"></script>
-
-	SELF HOSTED: (works offline)
+	<!-- SELF HOSTED: (works offline)  -->
 	<script src="./libs/vue.v3.3.4.global.prod.min.js"></script>
 
+	<!-- 
 	DOCUMENTATION:
 	https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
 	https://vuejs.org/guide/essentials/application.html
@@ -33,20 +26,7 @@
 		<button @click="count++">Counter: {{ count }}</button>
 	</div>
 </body>
-
-<script type="importmap">
-{
-	"imports": {
-		"vue": "https://unpkg.com/vue@3.3.4/dist/vue.esm-browser.js"
-	}
-}
-</script>
-
 <script type="module">
-
-//import * as Vue from 'https://unpkg.com/vue@3.3.4/dist/vue.esm-browser.js' // Without requiring the "importamp".
-//import * as Vue from 'https://cdn.jsdelivr.net/npm/vue@3.3.4/+esm' // Another CDN option.
-//import * as Vue from 'vue' // Thanks to the "importamp".
 
 var App = {
 	name: 'App',
